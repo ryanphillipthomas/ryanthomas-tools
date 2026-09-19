@@ -6,18 +6,51 @@ Desk tooling for **ryanthomas.ai** — shared utilities Architect and other agen
 
 ```
 ryanthomas-tools/
+  action.yml                 # Drift Check GitHub Action entrypoint
+  tools/drift-check/         # scanner implementation
   README.md
-  docs/
-    roadmap.md
-  # future: packages/ or tools/ entries as we migrate desk utilities here
+  docs/roadmap.md
 ```
 
-## Planned / related
+## Drift Check
+
+Dependency-free GitHub Action that blocks design drift (raw visual values + invalid design-token overrides). Reads only the checked-out repo; no telemetry.
+
+### Quickstart
+
+```yaml
+name: drift-check
+on: pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ryanphillipthomas/ryanthomas-tools@main
+```
+
+Previously published from [`ryanphillipthomas/drift-check`](https://github.com/ryanphillipthomas/drift-check) (`@v1`). That repo remains as the old Action home until we cut a deprecation redirect; **new consumers should use this repo**.
+
+### Local
+
+Requires Node.js 20+:
+
+```sh
+node tools/drift-check/index.mjs
+```
+
+Config: optional `drift-check.config.json` at the consumer repo root (see upstream docs / action inputs: `parent-namespace`, `token-path-pattern`, `scan-dirs`, `scan-extensions`).
+
+## Other notes
 
 | Tool | Status | Notes |
 |------|--------|--------|
-| [drift-check](https://github.com/ryanphillipthomas/drift-check) | Live standalone repo | Design-token drift GitHub Action; migrate or nest here when ready |
-| focx-site `tools/site-compose` | Stays in product repo | Site build only — not desk tooling |
+| Drift Check | **In this repo** | Action at repo root |
+| focx-site `tools/site-compose` | Stays in product repo | Site build only |
 
 ## Principles
 
