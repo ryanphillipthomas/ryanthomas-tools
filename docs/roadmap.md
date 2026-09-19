@@ -1,8 +1,8 @@
 # Roadmap
 
-1. **Seed** this repo (done) — home for ryanthomas.ai desk tooling.
-2. **Decide Drift Check home** — keep [drift-check](https://github.com/ryanphillipthomas/drift-check) standalone, or move/publish from here.
-3. **Slim focx-site** — strip pipeline/agent OS; leave `apps/site` + `tools/site-compose` + Render.
+1. **Seed** this repo — home for ryanthomas.ai desk tooling. ✅
+2. **Drift Check home** — moved in from [drift-check](https://github.com/ryanphillipthomas/drift-check). ✅
+3. **Deprecate standalone `drift-check`** — README redirect + keep `@v1` tags working, or republish Action from here.
 4. **Add tools as they appear** — only when a second desk utility needs a shared home.
 
-No CI yet — add when the first tool lives in-tree.
+CI for this repo: add when useful for the Action itself (self-test); consumer repos run the Action on their PRs.
